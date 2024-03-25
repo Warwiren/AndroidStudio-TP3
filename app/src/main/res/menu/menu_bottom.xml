@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/users"
+        android:title="Users"
+        android:icon="@drawable/baseline_account_circle_24"
+        />
+    <item
+        android:id="@+id/books"
+        android:title="Books"
+        android:icon="@drawable/baseline_book_24"
+        />
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/baseline_account_circle_24"
+        />
+    <item
+        android:id="@+id/authors"
+        android:title="Authors"
+        android:icon="@drawable/baseline_people_24"
+        />
+</menu>
