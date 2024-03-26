@@ -30,6 +30,7 @@
         app:navigationIcon="?android:attr/homeAsUpIndicator"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.example.wauters_killian_tp3;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,25 +36,41 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.bottomNavigationView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
-            @Override
-            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-                int menuItemId = menuItem.getItemId();
-
-                if(menuItemId == R.id.users){
-                    replaceFragment(new UsersFragment());
-                }
-                else if(menuItemId == R.id.profile){
-                    replaceFragment(new ProfileFragment());
-                }
-                else if(menuItemId == R.id.books){
-                    replaceFragment(new BookListFragment());
-                }
-                else if(menuItemId == R.id.authors){
-                    replaceFragment(new AuthorFragment());
-                }
-            }
-        });
+                binding.bottomNavigationView.setOnItemSelectedListener(menuItem ->  {
+/*
+                        if (menuItem.toString().equals("Users")) {
+                            replaceFragment(new UsersFragment());
+                        } else if (menuItem.toString().equals("Profile")) {
+                            replaceFragment(new ProfileFragment());
+                        } else if (menuItem.toString().equals("Books")) {
+                            replaceFragment(new BookListFragment());
+                        } else if (menuItem.toString().equals("Authors")) {
+                            replaceFragment(new AuthorFragment());
+                        }
+                        return true;
+*/
+                    switch(menuItem.toString()){
+                        case "Users":
+                           // replaceFragment(new UsersFragment());
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container_view, BookListFragment.class, null)
+                                    .setReorderingAllowed(true)
+                                    .addToBackStack("name") // Name can be null
+                                    .commit();
+                            break;
+                        case "Profile":
+                            replaceFragment(new ProfileFragment());
+                            break;
+                        case "Books":
+                            replaceFragment(new BookListFragment());
+                            break;
+                        case "Authors":
+                            replaceFragment(new AuthorFragment());
+                            break;
+                    }
+                    return true;
+                });
     }
 
     private void replaceFragment(Fragment fragment){

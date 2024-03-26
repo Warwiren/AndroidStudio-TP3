@@ -18,13 +18,9 @@
             android:theme="@style/Theme.Wauters_Killian_TP3" />
         <activity
             android:name=".UsersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BookActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
