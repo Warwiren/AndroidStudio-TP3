@@ -36,35 +36,35 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-                binding.bottomNavigationView.setOnItemSelectedListener(menuItem ->  {
+        binding.bottomNavigationView.setOnItemSelectedListener(menuItem ->  {
 
-                        if (menuItem.toString().equals("Users")) {
-                            replaceFragment(new UsersFragment());
-                        } else if (menuItem.toString().equals("Profile")) {
-                            replaceFragment(new ProfileFragment());
-                        } else if (menuItem.toString().equals("Books")) {
-                            replaceFragment(new BookListFragment());
-                        } else if (menuItem.toString().equals("Authors")) {
-                            replaceFragment(new AuthorFragment());
-                        }
-                        return true;
+                if (menuItem.toString().equals("Users")) {
+                    replaceFragment(new UsersFragment());
+                } else if (menuItem.toString().equals("Profile")) {
+                   replaceFragment(ProfileFragment.newInstance());
+                } else if (menuItem.toString().equals("Books")) {
+                    replaceFragment(new BookListFragment());
+                } else if (menuItem.toString().equals("Authors")) {
+                    replaceFragment(new AuthorFragment());
+                }
+                return true;
 /*
-                    switch(menuItem.toString()){
-                        case "Users":
-                            replaceFragment(new UsersFragment());
-                            break;
-                        case "Profile":
-                            replaceFragment(new ProfileFragment());
-                            break;
-                        case "Books":
-                            replaceFragment(new BookListFragment());
-                            break;
-                        case "Authors":
-                            replaceFragment(new AuthorFragment());
-                            break;
-                    }
-                    return true;
- */
+            switch(menuItem.toString()){
+                case "Users":
+                    replaceFragment(new UsersFragment());
+                    break;
+                case "Profile":
+                    replaceFragment(new ProfileFragment());
+                    break;
+                case "Books":
+                    replaceFragment(new BookListFragment());
+                    break;
+                case "Authors":
+                    replaceFragment(new AuthorFragment());
+                    break;
+            }
+            return true;
+*/
                 });
 
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, fragment)
+                .replace(R.id.fragment_container_view, fragment.getClass(), null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
