@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
                 binding.bottomNavigationView.setOnItemSelectedListener(menuItem ->  {
-/*
+
                         if (menuItem.toString().equals("Users")) {
                             replaceFragment(new UsersFragment());
                         } else if (menuItem.toString().equals("Profile")) {
@@ -48,16 +48,10 @@ public class MainActivity extends AppCompatActivity {
                             replaceFragment(new AuthorFragment());
                         }
                         return true;
-*/
+/*
                     switch(menuItem.toString()){
                         case "Users":
-                           // replaceFragment(new UsersFragment());
-                            FragmentManager fragmentManager = getSupportFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_container_view, BookListFragment.class, null)
-                                    .setReorderingAllowed(true)
-                                    .addToBackStack("name") // Name can be null
-                                    .commit();
+                            replaceFragment(new UsersFragment());
                             break;
                         case "Profile":
                             replaceFragment(new ProfileFragment());
@@ -70,13 +64,18 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                     return true;
+ */
                 });
+
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.commit();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, fragment)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
