@@ -19,50 +19,16 @@
             android:layout_height="wrap_content"
             tools:context=".FirstFragment">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:radius="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#555555"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="#FFFFFF"
-                        android:src="@drawable/ic_launcher_background" />
-
-                    <TextView
-                        android:id="@+id/nameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Nom/Prénom"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
         </androidx.core.widget.NestedScrollView>
 
-        <Button
-            android:id="@+id/button2"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_users"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_height="49dp"
-            android:text="Add +" />
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_user" />
+
 
     </LinearLayout>
 

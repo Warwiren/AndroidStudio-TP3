@@ -21,6 +21,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wauters_killian_tp3.databinding.ActivityMainBinding;
 
@@ -32,9 +34,10 @@ import Model.UserManager;
 public class UsersActivity extends AppCompatActivity {
 
     private CardView cardView;
-
+    private RecyclerView recyclerView;
+    //private UserAdapter userAdapter;
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    // private ActivityMainBinding binding;
     private LinearLayout userContainer;
     private UserManager userManager;
 
@@ -49,20 +52,19 @@ public class UsersActivity extends AppCompatActivity {
             return insets;
         });
 
-        userManager = new UserManager();
+        // userManager = new UserManager();
+        userManager = UserManager.getInstance();
 
         // Trouver le conteneur parent dans le layout
-        userContainer = findViewById(R.id.userContainer);
+        //userContainer = findViewById(R.id.userContainer);
+        recyclerView = findViewById(R.id.recycler_users);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Récupérer les données des utilisateurs
-        List<User> users = userManager.getUserList();
-
-        // Créer dynamiquement une carte pour chaque utilisateur et l'ajouter au conteneur
-        for (User user : users) {
-            CardView cardView = createUserCard(user);
-            userContainer.addView(cardView);
-        }
+        List<User> userList = userManager.getUserList();
+        //userAdapter = new UserAdapter(userList);
+        //recyclerView.setAdapter(userAdapter);
     }
+
     /*
         cardView.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -100,63 +102,5 @@ public class UsersActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.bottomNavigationView);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private CardView createUserCard(User user) {
-        CardView cardView = new CardView(this);
-        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        cardParams.setMargins(8, 8, 8, 8);
-        cardView.setLayoutParams(cardParams);
-        cardView.setRadius(16);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UsersActivity.this, MainActivity.class);
-                intent.putExtra("USER_NAME", user.getName());
-                // intent.putExtra("USER_LASTNAME", user.getLastName());
-                startActivity(intent);
-            }
-        });
-
-        LinearLayout innerLayout = new LinearLayout(this);
-        LinearLayout.LayoutParams innerParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        innerLayout.setLayoutParams(innerParams);
-        innerLayout.setOrientation(LinearLayout.HORIZONTAL);
-        innerLayout.setPadding(15, 15, 15, 15);
-
-        /*
-        ImageView icon = new ImageView(this);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(
-                40, 40
-        );
-        icon.setLayoutParams(iconParams);
-        icon.setImageResource();
-        innerLayout.addView(icon);
-
-         */
-
-        TextView nameTextView = new TextView(this);
-        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        innerLayout.setBackgroundColor(getResources().getColor(R.color.black));
-        textParams.setMargins(16, 0, 0, 0);
-        nameTextView.setLayoutParams(textParams);
-        nameTextView.setText(user.getName());
-        nameTextView.setTextColor(Color.WHITE);
-        nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        innerLayout.addView(nameTextView);
-
-        cardView.addView(innerLayout);
-
-        return cardView;
     }
 }
