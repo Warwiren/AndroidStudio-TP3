@@ -9,65 +9,25 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:background="#555555"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal"
+        >
 
         <TextView
-            android:id="@+id/nameTextView"
+            android:id="@+id/textViewGetUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="BookTitle"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:text="Bienvenue, utilisateur !" />
 
-        <ImageView
-            android:id="@+id/star1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:src="@color/cardview_light_background" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBooks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
-        <ImageView
-            android:id="@+id/star2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:src="@color/cardview_light_background" />
-
-        <ImageView
-            android:id="@+id/star3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:src="@color/cardview_light_background" />
-
-        <!-- Bouton pour modifier le livre -->
-        <ImageView
-            android:id="@+id/editIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/baseline_create_24" />
-
-        <!-- Bouton pour supprimer le livre -->
-        <ImageView
-            android:id="@+id/deleteIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/baseline_auto_delete_24" />
 
     </LinearLayout>
 

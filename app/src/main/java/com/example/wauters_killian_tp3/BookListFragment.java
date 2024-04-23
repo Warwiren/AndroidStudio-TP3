@@ -2,64 +2,76 @@ package com.example.wauters_killian_tp3;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BookListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.wauters_killian_tp3.databinding.FragmentBookListBinding;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Model.Book;
+import Model.BookManager;
+
+
 public class BookListFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BookListFragment() {
-        // Required empty public constructor
-        super(R.layout.fragment_book_list);
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookListFragment newInstance(String param1, String param2) {
-        BookListFragment fragment = new BookListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private FragmentBookListBinding binding;
+    private BookAdapter bookAdapter;
+    //private TextView textViewGetUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book_list, container, false);
+        binding = FragmentBookListBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
-}
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstaceState){
+        super.onViewCreated(view, savedInstaceState);
+
+        // Récupérer les données supplémentaires de l'intent
+        String userName = requireActivity().getIntent().getStringExtra("userName");
+
+        // Récupérer le TextView
+        TextView textViewGetUser = binding.textViewGetUser;
+
+        // Utiliser le nom de l'utilisateur pour personnaliser la vue
+        textViewGetUser.setText("Bienvenue, " + userName + " !");
+
+        // Créer une liste de livres (exemple)
+        List<Book> bookList = BookManager.getInstance().getBookList();
+
+        // Initialiser l'adaptateur de la RecyclerView
+        int numColumns = 1; // Nombre de colonnes dans le GridLayoutManager
+        bookAdapter = new BookAdapter(bookList, numColumns);
+
+        // Configurer la RecyclerView
+        binding.recyclerViewBooks.setLayoutManager(new GridLayoutManager(requireContext(), 1)); // Changez le deuxième paramètre pour ajuster le nombre de colonnes
+        binding.recyclerViewBooks.setAdapter(bookAdapter);
+
+        // Gérer le clic sur la flèche de retour
+        /*
+        binding.toolbarBook.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+
+        });
+
+         */
+    }
+
+        // Ajouter le layout du livre à la mise en page principale
+        //linearLayout.addView(bookLayout);
+    }

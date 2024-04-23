@@ -35,7 +35,7 @@ public class UsersActivity extends AppCompatActivity {
 
     private CardView cardView;
     private RecyclerView recyclerView;
-    //private UserAdapter userAdapter;
+    private UserAdapter userAdapter;
     private AppBarConfiguration appBarConfiguration;
     // private ActivityMainBinding binding;
     private LinearLayout userContainer;
@@ -52,15 +52,31 @@ public class UsersActivity extends AppCompatActivity {
             return insets;
         });
 
-        // userManager = new UserManager();
-        userManager = UserManager.getInstance();
+        // Créez une instance de UserManager et obtenez la liste des utilisateurs
+        userManager = new UserManager();
+        List<User> userList = userManager.getUserList();
+
+        // Trouvez votre RecyclerView dans le layout
+        recyclerView = findViewById(R.id.recycler_users);
+
+        // Initialisez votre RecyclerView avec un LayoutManager (LinearLayoutManager, GridLayoutManager, etc.)
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Créez une instance de UserAdapter en lui passant la liste des utilisateurs
+        userAdapter = new UserAdapter(userList);
+
+        // Définissez l'adapter pour votre RecyclerView
+        recyclerView.setAdapter(userAdapter);
+
+        //userManager = new UserManager();
+        //userManager = UserManager.getInstance();
 
         // Trouver le conteneur parent dans le layout
         //userContainer = findViewById(R.id.userContainer);
-        recyclerView = findViewById(R.id.recycler_users);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView = findViewById(R.id.recycler_users);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<User> userList = userManager.getUserList();
+        //List<User> userList = userManager.getUserList();
         //userAdapter = new UserAdapter(userList);
         //recyclerView.setAdapter(userAdapter);
     }

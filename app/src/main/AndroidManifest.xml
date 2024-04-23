@@ -15,7 +15,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.Wauters_Killian_TP3" />
+            android:theme="@style/Theme.Wauters_Killian_TP3"
+
+            />
         <activity
             android:name=".UsersActivity"
             android:exported="true">
