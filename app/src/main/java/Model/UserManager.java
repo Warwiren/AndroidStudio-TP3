@@ -9,9 +9,9 @@ public class UserManager {
 
     public UserManager() {
         userList = new ArrayList<>();
-        userList.add(new User("Frodon", "Saquet"));
-        userList.add(new User("Denethor", "Hectelion"));
-        userList.add(new User("Peregrin", "Touc"));
+        userList.add(new User("Frodon", "Saquet", 30, "frodon.saquet@example.com" ));
+        userList.add(new User("Denethor", "Hectelion", 50, "denethor.hectelion@example.com"));
+        userList.add(new User("Peregrin", "Touc", 25, "pippin@example.com"));
     }
 
     public static synchronized UserManager getInstance() {

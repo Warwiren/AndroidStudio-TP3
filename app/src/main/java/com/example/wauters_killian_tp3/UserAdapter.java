@@ -19,12 +19,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     // Déclarez une liste pour stocker les utilisateurs
     private List<User> userList;
 
+    public interface OnUserClickListener {
+        void onUserClick(int userId);
+    }
+
     // Constructeur prenant la liste des utilisateurs en argument
     public UserAdapter(List<User> userList) {
         this.userList = userList;
     }
 
     // Méthode appelée lorsqu'un nouveau ViewHolder doit être créé
+
+
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -79,7 +85,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         // Méthode pour lier les données de l'utilisateur à la vue
         public void bind(User user) {
             // Mettez à jour les vues avec les données de l'utilisateur
-            nameTextView.setText(user.getName() + " " + user.getEmoji());
+            nameTextView.setText(user.getName() + " " + user.getLastName());
         }
     }
 }

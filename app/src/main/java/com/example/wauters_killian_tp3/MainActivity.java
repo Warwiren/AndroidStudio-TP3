@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         // Inflater le layout de l'activité
         //setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolbarBook);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Appliquer le gestionnaire de fenêtre pour ajuster les marges pour les bords système
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -90,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             replaceFragment(fragment, title);
             return true;
         });
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
     }
 
     private void replaceFragment(Fragment fragment, String title) {

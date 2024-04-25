@@ -39,10 +39,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         return new BookViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = bookList.get(position);
         holder.bind(book);
+        
     }
 
     @Override
@@ -89,6 +91,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                     star3.setImageResource(R.drawable.empty_star_24);
             }
         }
+
     }
 }
 

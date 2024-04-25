@@ -3,10 +3,19 @@ package com.example.wauters_killian_tp3;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.wauters_killian_tp3.databinding.FragmentProfileBinding;
+
+import java.util.List;
+
+import Model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,47 +24,64 @@ import android.view.ViewGroup;
  */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentProfileBinding binding;
+    //private List<User> userList;
+    private User selectedUser;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-        super(R.layout.fragment_profile);
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            // Récupérez l'utilisateur sélectionné à partir des arguments
+            selectedUser = getArguments().getParcelable("selectedUser");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
+
+        /*
+        String userName = requireActivity().getIntent().getStringExtra("userName");
+        String email = requireActivity().getIntent().getStringExtra("email");
+        String age = requireActivity().getIntent().getStringExtra("age");
+
+        TextView textViewYear = binding.textViewAge;
+        TextView textViewMail = binding.textViewEmail;
+        TextView textViewName = binding.textViewName;
+        //textViewGetUser.setText("Bienvenue, " + userName + " !");
+
+        textViewName.setText("Name: " + userName);
+        textViewMail.setText("Email: " + email);
+        textViewYear.setText("Age: " + age);
+         */
+
+        // Récupérez les arguments contenant les détails de l'utilisateur sélectionné
+
+        if (selectedUser != null) {
+            binding.textViewName.setText("Name: " + selectedUser.getName());
+            binding.textViewAge.setText("Age: " + selectedUser.getAge());
+            binding.textViewEmail.setText("Email: " + selectedUser.getEmail());
+        }
+
+        return rootView;
     }
+
+
+    // Méthode pour afficher les détails de l'utilisateur sélectionné
+    /*
+    private void displayUserDetails(int position) {
+        if (userList != null && position >= 0 && position < userList.size()) {
+            User user = userList.get(position);
+            // Mettre à jour les TextView avec les détails de l'utilisateur
+            binding.textViewName.setText("Name: " + user.getName());
+            binding.textViewAge.setText("Age: " + user.getAge());
+            binding.textViewEmail.setText("Email: " + user.getEmail());
+        }
+    }
+
+     */
 }

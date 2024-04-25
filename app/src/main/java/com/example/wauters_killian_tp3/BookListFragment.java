@@ -59,17 +59,7 @@ public class BookListFragment extends Fragment {
         binding.recyclerViewBooks.setLayoutManager(new GridLayoutManager(requireContext(), 1)); // Changez le deuxième paramètre pour ajuster le nombre de colonnes
         binding.recyclerViewBooks.setAdapter(bookAdapter);
 
-        // Gérer le clic sur la flèche de retour
-        /*
-        binding.toolbarBook.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
 
-        });
-
-         */
     }
 
         // Ajouter le layout du livre à la mise en page principale
